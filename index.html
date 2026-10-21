@@ -3,11 +3,46 @@
 <head>
   <meta charset="utf-8">
   <script>
-    // Always enter at the top; in-page navigation still works after loading.
-    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-    if (location.hash) history.replaceState(history.state, '', location.pathname + location.search);
-    function resetEntryScroll() { window.scrollTo({ top: 0, left: 0, behavior: 'instant' }); }
-    window.addEventListener('pageshow', resetEntryScroll);
+    (() => {
+      if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+      if (location.hash) history.replaceState(history.state, '', location.pathname + location.search);
+      let timer;
+      let interacting = false;
+      function stop() {
+        interacting = true;
+        clearInterval(timer);
+        document.documentElement.classList.remove('page-entering');
+      }
+      function top() {
+        if (interacting) return;
+        document.documentElement.scrollTop = 0;
+        if (document.body) document.body.scrollTop = 0;
+        window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+      }
+      function start() {
+        clearInterval(timer);
+        document.documentElement.classList.add('page-entering');
+        const deadline = performance.now() + 3000;
+        top();
+        timer = setInterval(() => {
+          if (interacting || performance.now() >= deadline) {
+            clearInterval(timer);
+            document.documentElement.classList.remove('page-entering');
+          } else top();
+        }, 50);
+      }
+      // Stop immediately on intentional input so links and manual scrolling work.
+      for (const event of ['wheel', 'touchstart', 'pointerdown', 'keydown']) {
+        window.addEventListener(event, stop, { passive: true, capture: true });
+      }
+      window.addEventListener('pageshow', event => {
+        if (event.persisted) interacting = false;
+        start();
+      });
+      document.addEventListener('DOMContentLoaded', top);
+      window.addEventListener('load', top);
+      start();
+    })();
   </script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="СКСТ — государства, новости, история конфликтов и дипломатия.">
@@ -15,7 +50,7 @@
   <link rel="icon" type="image/png" href="assets/favicon.png?v=1">
   <link rel="apple-touch-icon" href="assets/favicon.png?v=1">
   <title>СКСТ — Стройка королевств с Тамарой</title>
-  <link rel="stylesheet" href="style.css?v=news-photos-1">
+  <link rel="stylesheet" href="style.css?v=scroll-fix-2">
 </head>
 <body>
   <header class="header"><a class="brand" href="#home" aria-label="СКСТ — главная">СКСТ<span>Стройка королевств с Тамарой</span></a><nav aria-label="Основная навигация"><a href="#news">Новости</a><a href="#states">Государства</a><a href="#history">История</a><a href="#map">Карта</a></nav><a class="header-link" href="#diplomacy">Дипломатия ↗</a></header>
