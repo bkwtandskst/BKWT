@@ -6,13 +6,25 @@
   <meta name="description" content="СКСТ — государства, новости, история конфликтов и дипломатия.">
   <meta name="theme-color" content="#55EAF9">
   <title>СКСТ — Стройка королевств с Тамарой</title>
-  <link rel="stylesheet" href="style.css?v=sidebar-news-1">
+  <link rel="stylesheet" href="style.css?v=planner-1">
 </head>
 <body>
   <header class="header"><a class="brand" href="#home" aria-label="СКСТ — главная">СКСТ<span>Стройка королевств с Тамарой</span></a><nav aria-label="Основная навигация"><a href="#news">Новости</a><a href="#states">Государства</a><a href="#history">История</a><a href="#map">Карта</a></nav><a class="header-link" href="#diplomacy">Дипломатия ↗</a></header>
   <div class="site-layout">
   <main>
     <section class="hero" id="home"><div class="hero-copy"><p class="eyebrow"><span class="dot"></span> ГОСУДАРСТВА · ИСТОРИЯ · ДИПЛОМАТИЯ</p><h1>Мир создаётся<br>его <em>участниками.</em></h1><p class="intro">У каждого государства — своя история.<br>У каждого союза — свои последствия.<br>Здесь собраны известные хроники СКСТ.</p><a class="button" href="#history">Открыть хронику <span>↗</span></a><a class="text-link" href="#states">Узнать о государствах ↓</a></div><div class="hero-art" aria-hidden="true"><div class="orbit one"></div><div class="orbit two"></div><div class="compass">N</div><div class="terrain terrain-a"></div><div class="terrain terrain-b"></div><div class="terrain terrain-c"></div><div class="art-caption">SKST / Стройка королевств с Тамарой<br><span>История продолжается</span></div><div class="art-index">01 — ∞</div></div><div class="hero-bottom"><span>АРХИВ ПРОЕКТА</span><span>СВОДКА НА 20 ОКТЯБРЯ 2026</span><span>ЛИСТАЙТЕ ВНИЗ ↓</span></div></section>
+    <section class="section planner" id="plan-game" aria-labelledby="planner-heading">
+<div class="section-heading"><div><p class="eyebrow">ВСТРЕЧИ СКСТ</p><h2 id="planner-heading">Когда играем?</h2></div><button class="button" id="open-planner" aria-expanded="false" aria-controls="planner-form">Запланировать игру</button></div>
+<p>Предложи дату и время. Голосуй за все варианты, в которые сможешь играть.</p>
+<p id="planner-status" role="status">Подключаем расписание…</p>
+<form id="planner-form" hidden>
+<div class="planner-fields"><div><label for="game-date">Дата игры</label><input id="game-date" name="date" type="date" required><p class="note">Время по Москве (МСК, UTC+3).</p><label for="game-time">Точное время</label><input id="game-time" name="time" type="time" value="17:00" required><div class="clock-modes"><button type="button" id="choose-hour" aria-pressed="true">Часы</button><button type="button" id="choose-minute" aria-pressed="false">Минуты</button><button type="button" id="clock-period">После полудня</button></div><p class="note" id="clock-help">Нажми число на циферблате, чтобы выбрать час.</p></div>
+<div class="clock" role="group" aria-label="Выбор времени на циферблате"><div class="clock-inner"></div><div class="clock-hand hour-hand" aria-hidden="true"></div><div class="clock-hand minute-hand" aria-hidden="true"></div><div class="clock-pin" aria-hidden="true"></div></div></div>
+<button type="submit" class="button" id="propose-game">Предложить вариант</button>
+</form><div id="game-options" class="game-options" aria-label="Варианты игры"></div>
+<p class="note">Один голос за вариант в этом браузере. Можно поддержать несколько вариантов и снять свой голос. Без регистрации.</p>
+<noscript>Для планирования игры включите JavaScript.</noscript>
+</section>
     <section id="news" class="section"><div class="section-heading"><div><p class="eyebrow">01 / ПОВЕСТКА</p><h2>Новости мира</h2></div><span class="muted">События, которые меняют историю</span></div><article class="newspaper" id="war-news" aria-labelledby="war-title">
       <div class="paper-masthead"><span>World</span><span class="paper-seal">СКСТ<small>ГАЗЕТА</small></span><span>news</span></div>
       <div class="paper-meta"><span>Стройка королевств с Тамарой</span><span>Подготовлено <time datetime="2026-10-19">19 октября 2026</time></span></div>
@@ -100,5 +112,6 @@
 <li><a href="#rl-parade"><strong>В Речи Листидской прошёл военный парад</strong><time class="news-date" datetime="2026-06-22">22.06.2026</time></a></li></ol><h3 class="sidebar-group">Архив без даты</h3><ul class="sidebar-list"><li><a href="#alphabet-shop"><strong>В Мировой Национальной Колонии открылся магазин-алфавит!</strong><span class="news-date">Дата уточняется</span></a></li></ul><a class="sidebar-all" href="#news">Читать все выпуски »</a><div class="sidebar-stamp">СКСТ • WORLD NEWS<br>Государства · События · Люди</div></aside>
   </div>
   <footer><a class="brand" href="#home">СКСТ<span>Стройка королевств с Тамарой</span></a><p>История, которую мы создаём вместе.</p><a href="#home">Наверх ↑</a></footer>
+  <script src="planner.js?v=1" defer></script>
 </body>
 </html>
