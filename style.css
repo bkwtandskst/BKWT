@@ -3,10 +3,10 @@
 
 /* SKST background palette */
 :root{color-scheme:light;--bg:#55EAF9;--panel:rgba(255,255,255,.86);--ink:#14252b;--muted:#31454d;--accent:#803300;--line:rgba(20,37,43,.25)}
-body{min-height:100vh;background:linear-gradient(135deg,#55EAF9 0%,#FF6900 100%)}
-.header,footer{background:rgba(255,255,255,.62)}
-.hero,.section{background:rgba(255,255,255,.66)}
-.diplomacy{background:var(--panel)}
+body{min-height:100vh;background:linear-gradient(110deg,#55EAF9 0%,#55EAF9 15%,#FF6900 85%,#FF6900 100%)}
+.header,footer{background:transparent}
+.hero,.section{background:transparent}
+.diplomacy{background:transparent}
 .button{background:#FF6900;color:#14252b}
 .button:hover{background:#55EAF9;color:#14252b}
 .hero-art{background:radial-gradient(ellipse at center,#55EAF9 0,transparent 70%),repeating-linear-gradient(0deg,transparent 0 39px,#14252b10 40px),repeating-linear-gradient(90deg,transparent 0 39px,#14252b10 40px)}
