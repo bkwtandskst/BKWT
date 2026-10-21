@@ -61,6 +61,13 @@ class Handler(SimpleHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(data)
 
+    def public_file(self, path):
+        files = {'/', '/index.html', '/style.css', '/planner.js'}
+        assets = ROOT / 'assets'
+        if assets.is_dir():
+            files.update('/assets/' + p.name for p in assets.iterdir() if p.is_file() and p.suffix.lower() in ('.jpg', '.png'))
+        return path in files
+
     def do_GET(self):
         path = self.path.split('?', 1)[0]
         if path == '/api/options':
@@ -72,13 +79,13 @@ class Handler(SimpleHTTPRequestHandler):
                   FROM options o LEFT JOIN votes v ON v.option_id = o.id
                   WHERE o.starts_at > ? GROUP BY o.id ORDER BY o.starts_at''', (voter, now)).fetchall()
             self.respond(200, {'options': [dict(id=r[0], starts_at=r[1], votes=r[2], voted=bool(r[3])) for r in rows]}, token)
-        elif path in ('/', '/index.html', '/style.css', '/planner.js'):
+        elif self.public_file(path):
             super().do_GET()
         else:
             self.send_error(404)
 
     def do_HEAD(self):
-        if self.path.split('?', 1)[0] in ('/', '/index.html', '/style.css', '/planner.js'):
+        if self.public_file(self.path.split('?', 1)[0]):
             super().do_HEAD()
         else:
             self.send_error(404)
