@@ -2,6 +2,13 @@
 <html lang="ru">
 <head>
   <meta charset="utf-8">
+  <script>
+    // Always enter at the top; in-page navigation still works after loading.
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    if (location.hash) history.replaceState(history.state, '', location.pathname + location.search);
+    function resetEntryScroll() { window.scrollTo({ top: 0, left: 0, behavior: 'instant' }); }
+    window.addEventListener('pageshow', resetEntryScroll);
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="СКСТ — государства, новости, история конфликтов и дипломатия.">
   <meta name="theme-color" content="#55EAF9">
