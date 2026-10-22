@@ -6,3 +6,5 @@ button,input{font:inherit}button{cursor:pointer}button:disabled{cursor:not-allow
 
 /* Prevent restored positions and image layout changes from moving initial view. */
 html,body{overflow-anchor:none}html.page-entering{scroll-behavior:auto!important}
+
+.meeting-announcement{padding:20px;border-bottom:3px ridge #b08b45;background:linear-gradient(#111b30df,#23150fe8),url('assets/meeting-2026-10-23.jpg') center/cover;text-align:center}.meeting-poster{display:block}.meeting-poster img{display:block;width:auto;height:auto;max-width:100%;max-height:78vh;margin:0 auto;border:2px solid #b48a37;box-shadow:0 5px 24px #0009}.meeting-caption{display:flex;align-items:center;justify-content:center;gap:10px 20px;flex-wrap:wrap;margin:16px auto 0;color:#ffe5ac}.meeting-caption strong{font:bold 21px Georgia,serif}.meeting-caption time{font:bold 14px Tahoma,sans-serif}.meeting-caption .button{margin:0}@media(max-width:760px){.meeting-announcement{padding:10px}.meeting-poster img{max-height:none;width:100%;height:auto}.meeting-caption{gap:10px}.meeting-caption strong{font-size:18px}}
